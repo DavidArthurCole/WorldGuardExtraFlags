@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group 'io.github.invvk'
+group 'io.github.davidarthurcole'
 version "$parent.version"
 
 repositories {
