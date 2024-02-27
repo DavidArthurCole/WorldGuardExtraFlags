@@ -29,7 +29,9 @@ shadowJar {
     archiveClassifier.set('')
     archiveVersion.set('')
 
-    destinationDirectory = file("C:\\Users\\david\\Desktop\\temp\\plugins")
+    //PUT THE PATH TO YOUR BUILD DIRECTORY HERE - ex:
+    // destinationDirectory = file("C:\\Users\\david\\Desktop\\Server\\plugins")
+    destinationDirectory = file(YOUR_PATH_HERE)
 
     exclude 'META-INF/**'
     exclude 'LICENSE'
