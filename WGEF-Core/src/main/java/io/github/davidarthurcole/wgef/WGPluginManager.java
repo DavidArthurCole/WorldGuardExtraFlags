@@ -139,7 +139,8 @@ public class WGPluginManager implements IManager {
                 new SpeedListener(this.plugin),
                 new VillagerTradeListener(this.plugin),
                 new EntityPlaceListener(this.plugin),
-                new EntityBreakListener(this.plugin));
+                new EntityBreakListener(this.plugin),
+                new PlayerInteractListener(this.plugin));
 
         if (!plugin.getConfig().getBoolean("disable-block-flag-patch"))
             registerEvents(new BlockListenerPatch());

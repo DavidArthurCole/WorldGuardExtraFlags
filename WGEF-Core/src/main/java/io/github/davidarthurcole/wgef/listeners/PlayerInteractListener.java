@@ -37,9 +37,6 @@ public class PlayerInteractListener implements Listener {
         // Check if the material is a trapdoor by checking if the name ends with "_TRAPDOOR"
         if (!clickedMaterial.name().endsWith("_TRAPDOOR")) return Event.Result.DEFAULT;
 
-        final var allowed = WGEFUtils.queryValue(player, location.getWorld(), regions.getRegions(), WGEFlags.ALLOW_TRAPDOOR_INTERACT);
-        if (allowed != null && allowed) return Event.Result.ALLOW;
-
         final var deny = WGEFUtils.queryValue(player, location.getWorld(), regions.getRegions(), WGEFlags.DENY_TRAPDOOR_INTERACT);
         if (deny != null && deny) return Event.Result.DENY;
 
