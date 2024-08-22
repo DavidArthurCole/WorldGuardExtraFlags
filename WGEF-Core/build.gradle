@@ -31,7 +31,7 @@ shadowJar {
 
     //PUT THE PATH TO YOUR BUILD DIRECTORY HERE - ex:
     // destinationDirectory = file("C:\\Users\\david\\Desktop\\Server\\plugins")
-    destinationDirectory = file(YOUR_PATH_HERE)
+    destinationDirectory = file("C:\\Users\\david\\Desktop\\plugins")
 
     exclude 'META-INF/**'
     exclude 'LICENSE'

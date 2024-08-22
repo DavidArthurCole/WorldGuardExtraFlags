@@ -49,13 +49,16 @@ public final class WGEFlags {
 
     public final static StateFlag NETHER_PORTALS = new StateFlag("nether-portals", true);
 
-    public final static SetFlag<Material> ALLOW_BLOCK_PLACE = new SetFlag<Material>("allow-block-place", new BlockMaterialFlag(null));
-    public final static SetFlag<Material> DENY_BLOCK_PLACE = new SetFlag<Material>("deny-block-place", new BlockMaterialFlag(null));
-    public final static SetFlag<Material> ALLOW_BLOCK_BREAK = new SetFlag<Material>("allow-block-break", new BlockMaterialFlag(null));
-    public final static SetFlag<Material> DENY_BLOCK_BREAK = new SetFlag<Material>("deny-block-break", new BlockMaterialFlag(null));
+    public final static SetFlag<Material> ALLOW_BLOCK_PLACE = new SetFlag<>("allow-block-place", new BlockMaterialFlag(null));
+    public final static SetFlag<Material> DENY_BLOCK_PLACE = new SetFlag<>("deny-block-place", new BlockMaterialFlag(null));
+    public final static SetFlag<Material> ALLOW_BLOCK_BREAK = new SetFlag<>("allow-block-break", new BlockMaterialFlag(null));
+    public final static SetFlag<Material> DENY_BLOCK_BREAK = new SetFlag<>("deny-block-break", new BlockMaterialFlag(null));
 
     public final static SetFlag<Material> ALLOWED_BLOCK_DROPS = new SetFlag<>("allowed-block-drops", new MaterialFlag(null));
     public final static SetFlag<Material> BLOCKED_BLOCK_DROPS = new SetFlag<>("blocked-block-drops", new MaterialFlag(null));
+
+    public final static BooleanFlag ALLOW_TRAPDOOR_INTERACT = new BooleanFlag("allow-trapdoor-interact");
+    public final static BooleanFlag DENY_TRAPDOOR_INTERACT = new BooleanFlag("deny-trapdoor-interact");
 
     public final static StateFlag GLIDE = new StateFlag("glide", true);
 
@@ -63,14 +66,14 @@ public final class WGEFlags {
 
     public final static StateFlag VILLAGER_TRADE = new StateFlag("villager-trade", true);
 
-    public final static SetFlag<EntityType> ALLOW_ENTITY_PLACE = new SetFlag<EntityType>("allow-entity-place", new io.github.davidarthurcole.wgef.abstraction.flags.helpers.EntityTypeFlag(null));
-    public final static SetFlag<EntityType> DENY_ENTITY_PLACE = new SetFlag<EntityType>("deny-entity-place", new io.github.davidarthurcole.wgef.abstraction.flags.helpers.EntityTypeFlag(null));
+    public final static SetFlag<EntityType> ALLOW_ENTITY_PLACE = new SetFlag<>("allow-entity-place", new io.github.davidarthurcole.wgef.abstraction.flags.helpers.EntityTypeFlag(null));
+    public final static SetFlag<EntityType> DENY_ENTITY_PLACE = new SetFlag<>("deny-entity-place", new io.github.davidarthurcole.wgef.abstraction.flags.helpers.EntityTypeFlag(null));
 
-    public final static SetFlag<EntityType> ALLOW_ENTITY_DAMAGE = new SetFlag<EntityType>("allow-entity-damage", new io.github.davidarthurcole.wgef.abstraction.flags.helpers.EntityTypeFlag(null));
-    public final static SetFlag<EntityType> DENY_ENTITY_DAMAGE = new SetFlag<EntityType>("deny-entity-damage", new io.github.davidarthurcole.wgef.abstraction.flags.helpers.EntityTypeFlag(null));
+    public final static SetFlag<EntityType> ALLOW_ENTITY_DAMAGE = new SetFlag<>("allow-entity-damage", new io.github.davidarthurcole.wgef.abstraction.flags.helpers.EntityTypeFlag(null));
+    public final static SetFlag<EntityType> DENY_ENTITY_DAMAGE = new SetFlag<>("deny-entity-damage", new io.github.davidarthurcole.wgef.abstraction.flags.helpers.EntityTypeFlag(null));
 
-    public final static SetFlag<EntityType> ALLOW_ENTITY_DESTROY = new SetFlag<EntityType>("allow-entity-destroy", new io.github.davidarthurcole.wgef.abstraction.flags.helpers.EntityTypeFlag(null));
-    public final static SetFlag<EntityType> DENY_ENTITY_DESTROY = new SetFlag<EntityType>("deny-entity-destroy", new EntityTypeFlag(null));
+    public final static SetFlag<EntityType> ALLOW_ENTITY_DESTROY = new SetFlag<>("allow-entity-destroy", new io.github.davidarthurcole.wgef.abstraction.flags.helpers.EntityTypeFlag(null));
+    public final static SetFlag<EntityType> DENY_ENTITY_DESTROY = new SetFlag<>("deny-entity-destroy", new EntityTypeFlag(null));
 
     public final static BooleanFlag DISABLE_COLLISION = new BooleanFlag("disable-collision");
 
