@@ -85,7 +85,6 @@ public class WGPluginManager implements IManager {
         registry.register(WGEFlags.DENY_ENTITY_DESTROY);
         registry.register(WGEFlags.DISABLE_COLLISION);
 
-        registry.register(WGEFlags.ALLOW_TRAPDOOR_INTERACT);
         registry.register(WGEFlags.DENY_TRAPDOOR_INTERACT);
 
         // [Invvk] merge conflicts

@@ -57,7 +57,6 @@ public final class WGEFlags {
     public final static SetFlag<Material> ALLOWED_BLOCK_DROPS = new SetFlag<>("allowed-block-drops", new MaterialFlag(null));
     public final static SetFlag<Material> BLOCKED_BLOCK_DROPS = new SetFlag<>("blocked-block-drops", new MaterialFlag(null));
 
-    public final static BooleanFlag ALLOW_TRAPDOOR_INTERACT = new BooleanFlag("allow-trapdoor-interact");
     public final static BooleanFlag DENY_TRAPDOOR_INTERACT = new BooleanFlag("deny-trapdoor-interact");
 
     public final static StateFlag GLIDE = new StateFlag("glide", true);
