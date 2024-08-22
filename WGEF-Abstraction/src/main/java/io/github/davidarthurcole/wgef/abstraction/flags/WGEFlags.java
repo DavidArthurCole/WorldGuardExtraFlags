@@ -3,7 +3,6 @@ package io.github.davidarthurcole.wgef.abstraction.flags;
 import com.sk89q.worldguard.protection.flags.*;
 import io.github.davidarthurcole.wgef.abstraction.WGEFUtils;
 import io.github.davidarthurcole.wgef.abstraction.flags.helpers.*;
-import io.github.davidarthurcole.wgef.abstraction.flags.helpers.*;
 import io.github.davidarthurcole.wgef.abstraction.flags.helpers.EntityTypeFlag;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
@@ -35,13 +34,13 @@ public final class WGEFlags {
     public final static StringFlag CHAT_PREFIX = new StringFlag("chat-prefix");
     public final static StringFlag CHAT_SUFFIX = new StringFlag("chat-suffix");
 
-    public final static SetFlag<PotionEffectType> BLOCKED_EFFECTS = new SetFlag<PotionEffectType>("blocked-effects", new PotionEffectTypeFlag(null));
+    public final static SetFlag<PotionEffectType> BLOCKED_EFFECTS = new SetFlag<>("blocked-effects", new PotionEffectTypeFlag(null));
 
     public final static StateFlag GOD_MODE = new StateFlag("godmode", false);
 
     public final static StateFlag WORLD_EDIT = new StateFlag("worldedit", true);
 
-    public final static SetFlag<PotionEffect> GIVE_EFFECTS = new SetFlag<PotionEffect>("give-effects", new PotionEffectFlag(null));
+    public final static SetFlag<PotionEffect> GIVE_EFFECTS = new SetFlag<>("give-effects", new PotionEffectFlag(null));
 
     public final static StateFlag FLY = new StateFlag("fly", false);
 
@@ -65,13 +64,13 @@ public final class WGEFlags {
 
     public final static StateFlag VILLAGER_TRADE = new StateFlag("villager-trade", true);
 
-    public final static SetFlag<EntityType> ALLOW_ENTITY_PLACE = new SetFlag<>("allow-entity-place", new io.github.davidarthurcole.wgef.abstraction.flags.helpers.EntityTypeFlag(null));
-    public final static SetFlag<EntityType> DENY_ENTITY_PLACE = new SetFlag<>("deny-entity-place", new io.github.davidarthurcole.wgef.abstraction.flags.helpers.EntityTypeFlag(null));
+    public final static SetFlag<EntityType> ALLOW_ENTITY_PLACE = new SetFlag<>("allow-entity-place", new EntityTypeFlag(null));
+    public final static SetFlag<EntityType> DENY_ENTITY_PLACE = new SetFlag<>("deny-entity-place", new EntityTypeFlag(null));
 
-    public final static SetFlag<EntityType> ALLOW_ENTITY_DAMAGE = new SetFlag<>("allow-entity-damage", new io.github.davidarthurcole.wgef.abstraction.flags.helpers.EntityTypeFlag(null));
-    public final static SetFlag<EntityType> DENY_ENTITY_DAMAGE = new SetFlag<>("deny-entity-damage", new io.github.davidarthurcole.wgef.abstraction.flags.helpers.EntityTypeFlag(null));
+    public final static SetFlag<EntityType> ALLOW_ENTITY_DAMAGE = new SetFlag<>("allow-entity-damage", new EntityTypeFlag(null));
+    public final static SetFlag<EntityType> DENY_ENTITY_DAMAGE = new SetFlag<>("deny-entity-damage", new EntityTypeFlag(null));
 
-    public final static SetFlag<EntityType> ALLOW_ENTITY_DESTROY = new SetFlag<>("allow-entity-destroy", new io.github.davidarthurcole.wgef.abstraction.flags.helpers.EntityTypeFlag(null));
+    public final static SetFlag<EntityType> ALLOW_ENTITY_DESTROY = new SetFlag<>("allow-entity-destroy", new EntityTypeFlag(null));
     public final static SetFlag<EntityType> DENY_ENTITY_DESTROY = new SetFlag<>("deny-entity-destroy", new EntityTypeFlag(null));
 
     public final static BooleanFlag DISABLE_COLLISION = new BooleanFlag("disable-collision");
