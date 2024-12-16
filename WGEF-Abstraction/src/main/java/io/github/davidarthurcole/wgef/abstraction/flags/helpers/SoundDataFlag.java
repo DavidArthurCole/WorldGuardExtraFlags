@@ -2,7 +2,7 @@ package io.github.davidarthurcole.wgef.abstraction.flags.helpers;
 
 import com.sk89q.worldguard.protection.flags.Flag;
 import com.sk89q.worldguard.protection.flags.FlagContext;
-import com.sk89q.worldguard.protection.flags.InvalidFlagFormat;
+import com.sk89q.worldguard.protection.flags.InvalidFlagFormatException;
 import io.github.davidarthurcole.wgef.abstraction.flags.data.SoundData;
 
 public class SoundDataFlag extends Flag<SoundData> {
@@ -16,12 +16,12 @@ public class SoundDataFlag extends Flag<SoundData> {
     }
 
     @Override
-    public SoundData parseInput(FlagContext context) throws InvalidFlagFormat {
+    public SoundData parseInput(FlagContext context) throws InvalidFlagFormatException {
         String[] splitd = context.getUserInput().trim().split(" ");
         if (splitd.length == 2)
             return new SoundData(splitd[0], Integer.parseInt(splitd[1]));
          else
-            throw new InvalidFlagFormat("Please use format: <sound name> <interval in ticks>");
+            throw new InvalidFlagFormatException("Please use format: <sound name> <interval in ticks>");
     }
 
     @Override

@@ -2,7 +2,7 @@ package io.github.davidarthurcole.wgef.abstraction.flags.helpers;
 
 import com.sk89q.worldguard.protection.flags.Flag;
 import com.sk89q.worldguard.protection.flags.FlagContext;
-import com.sk89q.worldguard.protection.flags.InvalidFlagFormat;
+import com.sk89q.worldguard.protection.flags.InvalidFlagFormatException;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -20,15 +20,15 @@ public class PotionEffectFlag extends Flag<PotionEffect> {
     }
 
     @Override
-    public PotionEffect parseInput(FlagContext context) throws InvalidFlagFormat {
+    public PotionEffect parseInput(FlagContext context) throws InvalidFlagFormatException {
         String[] split = context.getUserInput().trim().split(" ");
         if (split.length < 1 || split.length > 3) {
-            throw new InvalidFlagFormat("Please use the following format: <effect name> [effect amplifier] [show particles]");
+            throw new InvalidFlagFormatException("Please use the following format: <effect name> [effect amplifier] [show particles]");
         }
 
         PotionEffectType potionEffect = PotionEffectType.getByName(split[0]);
         if (potionEffect == null) {
-            throw new InvalidFlagFormat("Unable to find the potion effect type! Please refer to https://hub.spigotmc.org/javadocs/spigot/org/bukkit/potion/PotionEffectType.html");
+            throw new InvalidFlagFormatException("Unable to find the potion effect type! Please refer to https://hub.spigotmc.org/javadocs/spigot/org/bukkit/potion/PotionEffectType.html");
         }
 
         return this.buildPotionEffect(split);
