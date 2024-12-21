@@ -2,7 +2,7 @@ package io.github.davidarthurcole.wgef.abstraction.flags.helpers;
 
 import com.sk89q.worldguard.protection.flags.Flag;
 import com.sk89q.worldguard.protection.flags.FlagContext;
-import com.sk89q.worldguard.protection.flags.InvalidFlagFormatException;
+import com.sk89q.worldguard.protection.flags.InvalidFlagFormat;
 import org.bukkit.entity.EntityType;
 
 public class EntityTypeFlag extends Flag<EntityType> {
@@ -17,11 +17,11 @@ public class EntityTypeFlag extends Flag<EntityType> {
     }
 
     @Override
-    public EntityType parseInput(FlagContext context) throws InvalidFlagFormatException {
+    public EntityType parseInput(FlagContext context) throws InvalidFlagFormat {
         try {
             return EntityType.valueOf(formatEntityName(context.getUserInput()));
         } catch (IllegalArgumentException | NullPointerException e) {
-            throw new InvalidFlagFormatException("Unable to find the Entity type! Please refer to https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/entity/EntityType.html for valid ids");
+            throw new InvalidFlagFormat("Unable to find the Entity type! Please refer to https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/entity/EntityType.html for valid ids");
         }
     }
 

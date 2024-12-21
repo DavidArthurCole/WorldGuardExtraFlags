@@ -2,7 +2,7 @@ package io.github.davidarthurcole.wgef.abstraction.flags.helpers;
 
 import com.sk89q.worldguard.protection.flags.Flag;
 import com.sk89q.worldguard.protection.flags.FlagContext;
-import com.sk89q.worldguard.protection.flags.InvalidFlagFormatException;
+import com.sk89q.worldguard.protection.flags.InvalidFlagFormat;
 
 import java.util.Collection;
 
@@ -51,7 +51,7 @@ public class ForcedStateFlag extends Flag<ForcedStateFlag.ForcedState> {
 
 
     @Override
-    public ForcedState parseInput(FlagContext context) throws InvalidFlagFormatException {
+    public ForcedState parseInput(FlagContext context) throws InvalidFlagFormat {
         String input = context.getUserInput();
 
         if (input.equalsIgnoreCase("allow")) {
@@ -63,7 +63,7 @@ public class ForcedStateFlag extends Flag<ForcedStateFlag.ForcedState> {
         } else if (input.equalsIgnoreCase("none")) {
             return null;
         } else {
-            throw new InvalidFlagFormatException("Expected none/allow/force/deny but got '" + input + "'");
+            throw new InvalidFlagFormat("Expected none/allow/force/deny but got '" + input + "'");
         }
     }
 

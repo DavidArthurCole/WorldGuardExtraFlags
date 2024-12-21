@@ -2,7 +2,7 @@ package io.github.davidarthurcole.wgef.abstraction.flags.helpers;
 
 import com.sk89q.worldguard.protection.flags.Flag;
 import com.sk89q.worldguard.protection.flags.FlagContext;
-import com.sk89q.worldguard.protection.flags.InvalidFlagFormatException;
+import com.sk89q.worldguard.protection.flags.InvalidFlagFormat;
 import org.bukkit.potion.PotionEffectType;
 
 public class PotionEffectTypeFlag extends Flag<PotionEffectType> {
@@ -16,12 +16,12 @@ public class PotionEffectTypeFlag extends Flag<PotionEffectType> {
     }
 
     @Override
-    public PotionEffectType parseInput(FlagContext context) throws InvalidFlagFormatException {
+    public PotionEffectType parseInput(FlagContext context) throws InvalidFlagFormat {
         PotionEffectType potionEffect = PotionEffectType.getByName(context.getUserInput().trim());
         if (potionEffect != null) {
             return potionEffect;
         } else {
-            throw new InvalidFlagFormatException("Unable to find the potion effect type! Please refer to https://hub.spigotmc.org/javadocs/spigot/org/bukkit/potion/PotionEffectType.html");
+            throw new InvalidFlagFormat("Unable to find the potion effect type! Please refer to https://hub.spigotmc.org/javadocs/spigot/org/bukkit/potion/PotionEffectType.html");
         }
     }
 
