@@ -10,16 +10,21 @@ version "$parent.version"
 
 repositories {
     mavenCentral()
+    google()
     maven {
         url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
     }
     maven {
         url = 'https://repo.extendedclip.com/releases/'
     }
+    maven {
+        name "essentialsxSnapshots"
+        url "https://repo.essentialsx.net/snapshots"
+    }
 }
 
 dependencies {
-    compileOnly 'net.essentialsx:EssentialsX:2.20.1'
+    compileOnly 'net.essentialsx:EssentialsX:2.21.0-SNAPSHOT'
     compileOnly 'me.clip:placeholderapi:2.11.6'
 
     implementation "org.bstats:bstats-bukkit:3.1.0"
@@ -49,7 +54,7 @@ spigot {
         main 'io.github.davidarthurcole.wgef.WGEFPlugin'
         named 'WGEF-Reborn'
         authors 'oBlazin', 'DavidArthurCole'
-        apiVersion '1.21.3'
+        apiVersion '1.21.4'
         version "${parent.version}+${indraGit.commit().abbreviate(7).name()}"
         depend('WorldGuard')
         softDepend('FastAsyncWorldEdit', 'Essentials', 'TAB')

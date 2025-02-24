@@ -56,7 +56,12 @@ public final class WGEFlags {
     public final static SetFlag<Material> ALLOWED_BLOCK_DROPS = new SetFlag<>("allowed-block-drops", new MaterialFlag(null));
     public final static SetFlag<Material> BLOCKED_BLOCK_DROPS = new SetFlag<>("blocked-block-drops", new MaterialFlag(null));
 
+    // Added flags from fork
     public final static BooleanFlag DENY_TRAPDOOR_INTERACT = new BooleanFlag("deny-trapdoor-interact");
+    public final static BooleanFlag DENY_FENCE_GATE_INTERACT = new BooleanFlag("deny-fence-gate-interact");
+    public final static BooleanFlag DENY_GOAT_HORN_USE = new BooleanFlag("deny-goat-horn-use");
+    public final static BooleanFlag DENY_POT_INTERACT = new BooleanFlag("deny-pot-interact");
+    // End of added flags from fork
 
     public final static StateFlag GLIDE = new StateFlag("glide", true);
 
