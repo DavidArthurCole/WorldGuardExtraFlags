@@ -12,11 +12,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.EquipmentSlot;
 
-import java.util.Objects;
-
-import static org.bukkit.Material.DECORATED_POT;
-import static org.bukkit.Material.GOAT_HORN;
+import static org.bukkit.Material.*;
 
 public class PlayerInteractListener implements Listener {
 
@@ -30,22 +28,26 @@ public class PlayerInteractListener implements Listener {
         final var block = e.getClickedBlock();
         if (block == null) return;
         final var location = block.getLocation();
+        final var hand = e.getHand();
 
-        final var result = resolveInteractResult(player, block, location);
+        final var result = resolveInteractResult(player, block, location, hand);
         if(result == Event.Result.DENY) e.setCancelled(true);
     }
 
-    private Event.Result resolveInteractResult(final Player player, final Block block, final Location location) {
+    private Event.Result resolveInteractResult(final Player player, final Block block, final Location location, final EquipmentSlot hand) {
         final var trapdoorResult = resolveInteractTrapdoorResult(player, block, location);
         if (trapdoorResult != Event.Result.DEFAULT) return trapdoorResult;
 
         final var fenceGateResult = resolveInteractFenceGateResult(player, block, location);
         if (fenceGateResult != Event.Result.DEFAULT) return fenceGateResult;
 
-        final var decoratedPotResult = resolveInteractDecoratedPotResult(player, block, location);
-        if (decoratedPotResult != Event.Result.DEFAULT) return decoratedPotResult;
+        final var eggResult = resolveInteractSpawnEggResult(player, block, location, hand);
+        if (eggResult != Event.Result.DEFAULT) return eggResult;
 
-        return resolveInteractGoatHornResult(player, location);
+        final var goatHornResult = resolveInteractGoatHornResult(player, location, hand);
+        if (goatHornResult != Event.Result.DEFAULT) return goatHornResult;
+
+        return resolveInteractDecoratedPotResult(player, block, location);
     }
 
     private Event.Result resolveInteractTrapdoorResult(final Player player, final Block block, final Location location) {
@@ -86,13 +88,40 @@ public class PlayerInteractListener implements Listener {
         return Event.Result.DEFAULT;
     }
 
-    private Event.Result resolveInteractGoatHornResult(final Player player, final Location location) {
+    private Event.Result resolveInteractGoatHornResult(final Player player, final Location location, final EquipmentSlot hand) {
+        final boolean isHorn;
+        if (hand == EquipmentSlot.HAND) {
+            isHorn = player.getInventory().getItemInMainHand().getType() == GOAT_HORN;
+        } else if (hand == EquipmentSlot.OFF_HAND) {
+            isHorn = player.getInventory().getItemInOffHand().getType() == GOAT_HORN;
+        } else isHorn = false;
+        if (!isHorn) return Event.Result.DEFAULT;
+
         final var regions = plugin.getFork().getRegionContainer().createQuery().getApplicableRegions(location);
-
-        final var isGoatHorn = Objects.requireNonNull(player.getItemInUse()).getType() == GOAT_HORN;
-        if (!isGoatHorn) return Event.Result.DEFAULT;
-
         final var deny = WGEFUtils.queryValue(player, location.getWorld(), regions.getRegions(), WGEFlags.DENY_GOAT_HORN_USE);
+        if (deny != null && deny) return Event.Result.DENY;
+
+        return Event.Result.DEFAULT;
+    }
+
+    private Event.Result resolveInteractSpawnEggResult(final Player player, final Block block, final Location location, final EquipmentSlot hand) {
+        final boolean isEgg;
+        if (hand == EquipmentSlot.HAND) {
+            isEgg = player.getInventory().getItemInMainHand().getType().name().endsWith("_SPAWN_EGG");
+        } else if (hand == EquipmentSlot.OFF_HAND) {
+            isEgg = player.getInventory().getItemInOffHand().getType().name().endsWith("_SPAWN_EGG");
+        } else isEgg = false;
+        if (!isEgg) return Event.Result.DEFAULT;
+
+        final var regions = plugin.getFork().getRegionContainer().createQuery().getApplicableRegions(location);
+        final Material clickedMaterial = block.getType();
+
+        final Boolean deny;
+        if (clickedMaterial == SPAWNER) {
+            deny = WGEFUtils.queryValue(player, location.getWorld(), regions.getRegions(), WGEFlags.DENY_SPAWN_EGG_SPAWNER);
+        } else {
+            deny = WGEFUtils.queryValue(player, location.getWorld(), regions.getRegions(), WGEFlags.DENY_SPAWN_EGG_SPAWN);
+        }
         if (deny != null && deny) return Event.Result.DENY;
 
         return Event.Result.DEFAULT;

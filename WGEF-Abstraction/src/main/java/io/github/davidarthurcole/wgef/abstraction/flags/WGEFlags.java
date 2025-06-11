@@ -61,6 +61,8 @@ public final class WGEFlags {
     public final static BooleanFlag DENY_FENCE_GATE_INTERACT = new BooleanFlag("deny-fence-gate-interact");
     public final static BooleanFlag DENY_GOAT_HORN_USE = new BooleanFlag("deny-goat-horn-use");
     public final static BooleanFlag DENY_POT_INTERACT = new BooleanFlag("deny-pot-interact");
+    public final static BooleanFlag DENY_SPAWN_EGG_SPAWN = new BooleanFlag("deny-spawn-egg-spawn");
+    public final static BooleanFlag DENY_SPAWN_EGG_SPAWNER = new BooleanFlag("deny-spawn-egg-spawner");
     // End of added flags from fork
 
     public final static StateFlag GLIDE = new StateFlag("glide", true);
