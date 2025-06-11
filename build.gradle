@@ -9,7 +9,7 @@ plugins {
 }
 
 group 'io.github.davidarthurcole'
-version '2.9'
+version '2.10'
 
 repositories {
     mavenCentral()
