@@ -9,7 +9,7 @@ plugins {
 }
 
 group 'io.github.davidarthurcole'
-version '2.8'
+version '2.9'
 
 repositories {
     mavenCentral()
@@ -22,31 +22,36 @@ subprojects {
 
     java {
         toolchain {
-            languageVersion.set(JavaLanguageVersion.of(17))
+            languageVersion.set(JavaLanguageVersion.of(22))
         }
     }
 
     repositories {
         mavenCentral()
+        google()
         maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
         maven { url "https://maven.enginehub.org/repo/" }
         maven { url "https://repo.dmulloy2.net/repository/public/" }
         maven {
-            name "essentialsx-releases"
-            url 'https://repo.essentialsx.net/releases/'
-        }
-        maven {
             name "spigot-repo"
             url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
         }
+        maven { url 'https://jitpack.io' }
     }
 
     dependencies {
-        compileOnly 'org.spigotmc:spigot-api:1.20.4-R0.1-SNAPSHOT'
+        compileOnly('org.spigotmc:spigot-api:1.21.4-R0.1-SNAPSHOT')
+        compileOnly 'com.sk89q.worldguard:worldguard-bukkit:7.0.13-SNAPSHOT'
 
-        compileOnly 'com.sk89q.worldguard:worldguard-bukkit:7.0.7'
+        compileOnly("com.sk89q.worldedit:worldedit-core:7.3.9")
+        compileOnly("com.sk89q.worldedit:worldedit-bukkit:7.3.9") { transitive = false }
+    }
 
-        compileOnly("com.sk89q.worldedit:worldedit-core:7.2.10")
-        compileOnly("com.sk89q.worldedit:worldedit-bukkit:7.2.10") { transitive = false }
+    configurations.configureEach {
+        resolutionStrategy {
+            force 'com.google.guava:guava:33.3.1-jre'
+            force 'com.google.code.gson:gson:2.11.0'
+            force 'org.apache.logging.log4j:log4j-bom:2.24.1'
+        }
     }
 }
