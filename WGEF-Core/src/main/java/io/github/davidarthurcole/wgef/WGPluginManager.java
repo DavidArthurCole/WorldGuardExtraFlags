@@ -89,6 +89,8 @@ public class WGPluginManager implements IManager {
         registry.register(WGEFlags.DENY_FENCE_GATE_INTERACT);
         registry.register(WGEFlags.DENY_GOAT_HORN_USE);
         registry.register(WGEFlags.DENY_POT_INTERACT);
+        registry.register(WGEFlags.DENY_SPAWN_EGG_SPAWN);
+        registry.register(WGEFlags.DENY_SPAWN_EGG_SPAWNER);
 
         // [Invvk] merge conflicts
         registry.register(WGEFlags.ALLOWED_BLOCK_DROPS);
