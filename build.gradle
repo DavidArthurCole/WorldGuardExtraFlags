@@ -9,7 +9,7 @@ plugins {
 }
 
 group 'io.github.davidarthurcole'
-version '2.10'
+version '2.11'
 
 repositories {
     mavenCentral()
@@ -40,11 +40,11 @@ subprojects {
     }
 
     dependencies {
-        compileOnly('org.spigotmc:spigot-api:1.21.4-R0.1-SNAPSHOT')
-        compileOnly 'com.sk89q.worldguard:worldguard-bukkit:7.0.13-SNAPSHOT'
+        compileOnly('org.spigotmc:spigot-api:1.21.8-R0.1-SNAPSHOT')
+        compileOnly 'com.sk89q.worldguard:worldguard-bukkit:7.0.14-SNAPSHOT'
 
-        compileOnly("com.sk89q.worldedit:worldedit-core:7.3.9")
-        compileOnly("com.sk89q.worldedit:worldedit-bukkit:7.3.9") { transitive = false }
+        compileOnly("com.sk89q.worldedit:worldedit-core:7.3.16-SNAPSHOT")
+        compileOnly("com.sk89q.worldedit:worldedit-bukkit:7.3.16-SNAPSHOT") { transitive = false }
     }
 
     configurations.configureEach {

@@ -54,7 +54,7 @@ spigot {
         main 'io.github.davidarthurcole.wgef.WGEFPlugin'
         named 'WGEF-Reborn'
         authors 'oBlazin', 'DavidArthurCole'
-        apiVersion '1.21.4'
+        apiVersion '1.21.8'
         version "${parent.version}+${indraGit.commit().abbreviate(7).name()}"
         depend('WorldGuard')
         softDepend('FastAsyncWorldEdit', 'Essentials', 'TAB', 'PlaceholderAPI')

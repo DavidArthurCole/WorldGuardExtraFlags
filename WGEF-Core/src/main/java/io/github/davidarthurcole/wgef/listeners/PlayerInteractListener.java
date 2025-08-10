@@ -14,6 +14,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
+import javax.annotation.Nullable;
+
 import static org.bukkit.Material.*;
 
 public class PlayerInteractListener implements Listener {
@@ -28,13 +30,13 @@ public class PlayerInteractListener implements Listener {
         final var block = e.getClickedBlock();
         if (block == null) return;
         final var location = block.getLocation();
-        final var item = e.getItem();
+        @Nullable final ItemStack item = e.getItem();
 
         final var result = resolveInteractResult(player, block, location, item);
         if(result == Event.Result.DENY) e.setCancelled(true);
     }
 
-    private Event.Result resolveInteractResult(final Player player, final Block block, final Location location, final ItemStack item) {
+    private Event.Result resolveInteractResult(final Player player, final Block block, final Location location, @Nullable final ItemStack item) {
         final var trapdoorResult = resolveInteractTrapdoorResult(player, block, location);
         if (trapdoorResult != Event.Result.DEFAULT) return trapdoorResult;
 
@@ -87,7 +89,8 @@ public class PlayerInteractListener implements Listener {
         return Event.Result.DEFAULT;
     }
 
-    private Event.Result resolveInteractGoatHornResult(final Player player, final Location location, final ItemStack item) {
+    private Event.Result resolveInteractGoatHornResult(final Player player, final Location location, @Nullable final ItemStack item) {
+        if (item == null) return Event.Result.DEFAULT;
         if (item.getType() != GOAT_HORN) return Event.Result.DEFAULT;
 
         final var regions = plugin.getFork().getRegionContainer().createQuery().getApplicableRegions(location);
@@ -97,7 +100,8 @@ public class PlayerInteractListener implements Listener {
         return Event.Result.DEFAULT;
     }
 
-    private Event.Result resolveInteractSpawnEggResult(final Player player, final Block block, final Location location, final ItemStack item) {
+    private Event.Result resolveInteractSpawnEggResult(final Player player, final Block block, final Location location, @Nullable final ItemStack item) {
+        if (item == null) return Event.Result.DEFAULT;
         if(!item.getType().name().endsWith("_SPAWN_EGG")) return Event.Result.DEFAULT;
 
         final var regions = plugin.getFork().getRegionContainer().createQuery().getApplicableRegions(location);
