@@ -1,4 +1,4 @@
-package io.github.davidarthurcole.wgef.listeners;
+package io.github.davidarthurcole.wgef.listeners.entity;
 
 import com.sk89q.worldguard.bukkit.event.entity.SpawnEntityEvent;
 import io.github.davidarthurcole.wgef.WGEFPlugin;

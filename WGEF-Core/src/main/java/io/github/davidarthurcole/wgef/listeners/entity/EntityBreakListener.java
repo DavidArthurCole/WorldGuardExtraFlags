@@ -1,4 +1,4 @@
-package io.github.davidarthurcole.wgef.listeners;
+package io.github.davidarthurcole.wgef.listeners.entity;
 
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;

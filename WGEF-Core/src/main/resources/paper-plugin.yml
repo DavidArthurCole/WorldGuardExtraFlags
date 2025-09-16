@@ -1,0 +1,8 @@
+name: WGEF-Reborn
+main: io.github.davidarthurcole.wgef.WGEFPlugin
+version: ${version}
+authors: [oBlazin, DavidArthurCole]
+api-version: 1.21
+depend: [WorldGuard]
+softdepend: [FastAsyncWorldEdit, Essentials, TAB, PlaceholderAPI]
+description: Adds more flags to WorldGuard to help manage your server easily!

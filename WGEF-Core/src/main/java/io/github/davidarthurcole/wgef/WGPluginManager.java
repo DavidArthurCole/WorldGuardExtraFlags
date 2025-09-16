@@ -19,10 +19,12 @@ import io.github.davidarthurcole.wgef.abstraction.flags.handler.teleport.Telepor
 import io.github.davidarthurcole.wgef.abstraction.wrapper.AbstractSessionManagerWrapper;
 import io.github.davidarthurcole.wgef.dependency.EssentialsDependency;
 import io.github.davidarthurcole.wgef.listeners.*;
+import io.github.davidarthurcole.wgef.listeners.entity.EntityBreakListener;
+import io.github.davidarthurcole.wgef.listeners.entity.EntityMoveListener;
+import io.github.davidarthurcole.wgef.listeners.entity.EntityPlaceListener;
 import io.github.davidarthurcole.wgef.listeners.essentials.GodModeListener;
 import io.github.davidarthurcole.wgef.listeners.papi.PAPIChatListener;
 import io.github.davidarthurcole.wgef.listeners.we.WorldEditListener;
-import io.github.davidarthurcole.wgef.listeners.*;
 import io.github.davidarthurcole.wgef.updater.UpdateChecker;
 import io.github.davidarthurcole.wgef.v8.IWG7Fork;
 import org.bstats.bukkit.Metrics;
@@ -79,6 +81,8 @@ public class WGPluginManager implements IManager {
         registry.register(WGEFlags.VILLAGER_TRADE);
         registry.register(WGEFlags.ALLOW_ENTITY_PLACE);
         registry.register(WGEFlags.DENY_ENTITY_PLACE);
+        registry.register(WGEFlags.DESTROY_ENTITY_ON_LEAVE);
+        registry.register(WGEFlags.DESTROY_ENTITY_ON_ENTRY);
         registry.register(WGEFlags.ALLOW_ENTITY_DAMAGE);
         registry.register(WGEFlags.DENY_ENTITY_DAMAGE);
         registry.register(WGEFlags.ALLOW_ENTITY_DESTROY);
@@ -143,6 +147,7 @@ public class WGPluginManager implements IManager {
                 new SpeedListener(this.plugin),
                 new VillagerTradeListener(this.plugin),
                 new EntityPlaceListener(this.plugin),
+                new EntityMoveListener(this.plugin),
                 new EntityBreakListener(this.plugin),
                 new PlayerInteractListener(this.plugin));
 
@@ -160,7 +165,7 @@ public class WGPluginManager implements IManager {
 
     @Override
     public void disable() {
-        if (Bukkit.getOnlinePlayers().size() == 0)
+        if (Bukkit.getOnlinePlayers().isEmpty())
             return;
 
         Bukkit.getOnlinePlayers().forEach(player -> {

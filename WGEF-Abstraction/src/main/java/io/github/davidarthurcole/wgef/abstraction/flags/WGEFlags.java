@@ -71,6 +71,9 @@ public final class WGEFlags {
 
     public final static StateFlag VILLAGER_TRADE = new StateFlag("villager-trade", true);
 
+    public final static SetFlag<EntityType> DESTROY_ENTITY_ON_LEAVE = new SetFlag<>("destroy-entity-on-leave", new EntityTypeFlag(null));
+    public final static SetFlag<EntityType> DESTROY_ENTITY_ON_ENTRY = new SetFlag<>("destroy-entity-on-entry", new EntityTypeFlag(null));
+
     public final static SetFlag<EntityType> ALLOW_ENTITY_PLACE = new SetFlag<>("allow-entity-place", new EntityTypeFlag(null));
     public final static SetFlag<EntityType> DENY_ENTITY_PLACE = new SetFlag<>("deny-entity-place", new EntityTypeFlag(null));
 
