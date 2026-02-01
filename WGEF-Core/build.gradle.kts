@@ -3,7 +3,6 @@ plugins {
     id("com.gradleup.shadow") version "9.0.0-beta4"
     id("xyz.jpenilla.run-paper") version "2.3.0"
     id("net.kyori.indra.git") version "3.1.3"
-    id("io.papermc.paperweight.userdev") version "1.7.2"
 }
 
 group = "io.github.invvk"
@@ -12,24 +11,27 @@ version = parent?.version ?: "1.0.0"
 repositories {
     mavenCentral()
     maven("https://repo.papermc.io/repository/maven-public/")
-    maven("https://repo.essentialsx.net/snapshots")
+    maven("https://repo.essentialsx.net/releases")
     maven("https://repo.extendedclip.com/releases/")
+    maven("https://repo.helpch.at/releases")
 }
 
 dependencies {
-    compileOnly(paperweight.paperDevBundle("1.21.1-R0.1-SNAPSHOT"))
-
-    compileOnly("net.essentialsx:EssentialsX:2.21.0-SNAPSHOT")
-    compileOnly("me.clip:placeholderapi:2.11.6")
+    // https://mvnrepository.com/artifact/net.essentialsx/EssentialsX
+    compileOnly("net.essentialsx:EssentialsX:2.21.2")
+    // https://repo.helpch.at/#/releases/me/clip/placeholderapi
+    compileOnly("me.clip:placeholderapi:2.11.7")
 
     implementation(project(":WGEF-Abstraction"))
     implementation(project(":WG7"))
+    implementation("org.bstats:bstats-bukkit:3.1.0")
 }
 
 tasks.shadowJar {
     archiveBaseName.set("WGEF-REBORN")
+    val mcVer = "1.21.11"
+    archiveVersion.set("${project.version}" + mcVer.takeIf { it.isNotEmpty() }?.let { "-$it" }.orEmpty())
     archiveClassifier.set("")
-    archiveVersion.set("")
 
     destinationDirectory.set(file("C:\\Users\\david\\Desktop\\plugins"))
 
@@ -43,8 +45,6 @@ tasks.shadowJar {
 
 tasks.processResources {
     filesMatching("paper-plugin.yml") {
-        expand(
-                "version" to "${parent?.version}+${indraGit.commit()?.abbreviate(7)?.name() ?: "local"}"
-        )
+        expand("version" to project.version)
     }
 }

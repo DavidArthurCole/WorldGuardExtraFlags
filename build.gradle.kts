@@ -35,12 +35,18 @@ subprojects {
     }
 
     dependencies {
-        compileOnly("org.spigotmc:spigot-api:1.21.8-R0.1-SNAPSHOT")
-        compileOnly("com.sk89q.worldguard:worldguard-bukkit:7.0.14-SNAPSHOT")
-        compileOnly("com.sk89q.worldedit:worldedit-core:7.3.16-SNAPSHOT")
-        compileOnly("com.sk89q.worldedit:worldedit-bukkit:7.3.16-SNAPSHOT") {
+        // https://hub.spigotmc.org/nexus/#browse/browse:public
+        compileOnly("io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT")
+        // https://maven.enginehub.org/repo/com/sk89q/worldguard/worldguard-bukkit/
+        compileOnly("com.sk89q.worldguard:worldguard-bukkit:7.0.16-SNAPSHOT")
+        // https://maven.enginehub.org/repo/com/sk89q/worldedit/worldedit-core/
+        compileOnly("com.sk89q.worldedit:worldedit-core:7.4.0")
+        // https://maven.enginehub.org/repo/com/sk89q/worldedit/worldedit-bukkit/
+        compileOnly("com.sk89q.worldedit:worldedit-bukkit:7.4.0") {
             isTransitive = false
         }
+        // https://mvnrepository.com/artifact/com.github.NEZNAMY/TAB-API/versions
+        compileOnly("com.github.NEZNAMY:TAB-API:5.4.0")
     }
 
     configurations.configureEach {

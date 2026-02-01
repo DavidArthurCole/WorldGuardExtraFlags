@@ -9,8 +9,11 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityPotionEffectEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.potion.PotionType;
 
+import java.util.List;
 import java.util.Set;
 
 public class BlockedPotionEffectListener implements Listener {
@@ -73,7 +76,15 @@ public class BlockedPotionEffectListener implements Listener {
                 if (meta == null)
                     return;
 
-                final PotionEffectType given = meta.getBasePotionData().getType().getEffectType();
+                final PotionType baseType = meta.getBasePotionType();
+                if (baseType == null)
+                    return;
+
+                final List<PotionEffect> effects = baseType.getPotionEffects();
+                if (effects.isEmpty())
+                    return;
+
+                final PotionEffectType given = effects.getFirst().getType();
 
                 if (given == null)
                     return;

@@ -9,6 +9,7 @@ import com.sk89q.worldguard.protection.flags.StateFlag;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import com.sk89q.worldguard.protection.util.NormativeOrders;
 import org.bukkit.World;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -84,6 +85,50 @@ public class WGEFUtils {
     public static <T> FlagValueCalculator createFlagValueCalculatorUnchecked(World world, Set<ProtectedRegion> regions, Flag<T> flag) {
         final List<ProtectedRegion> checkForRegions = List.copyOf(regions);
         ProtectedRegion global = WGEFUtils.getFork().getRegionContainer().get(world).getRegion(ProtectedRegion.GLOBAL_REGION);
+        return new FlagValueCalculator(checkForRegions, global);
+    }
+
+    public static boolean hasBypass(Entity entity, World world, ProtectedRegion region, Flag<?> flag) {
+        if (!(entity instanceof Player player)) {
+            return false;
+        }
+        return hasBypass(player, world, region, flag);
+    }
+
+    public static StateFlag.State queryState(Entity entity, World world, Set<ProtectedRegion> regions, StateFlag flag) {
+        return createFlagValueCalculator(entity, world, regions, flag)
+                .queryState(entity instanceof Player ? wrapPlayer((Player) entity) : null, flag);
+    }
+
+    public static <T> T queryValue(Entity entity, World world, Set<ProtectedRegion> regions, Flag<T> flag) {
+        return createFlagValueCalculator(entity, world, regions, flag)
+                .queryValue(entity instanceof Player ? wrapPlayer((Player) entity) : null, flag);
+    }
+
+    public static <T> T queryValueUnchecked(Entity entity, World world, Set<ProtectedRegion> regions, Flag<T> flag) {
+        return createFlagValueCalculatorUnchecked(world, regions, flag)
+                .queryValue(entity instanceof Player ? wrapPlayer((Player) entity) : null, flag);
+    }
+
+    public static <T> FlagValueCalculator createFlagValueCalculator(Entity entity, World world, Set<ProtectedRegion> regions, Flag<T> flag) {
+        final List<ProtectedRegion> checkForRegions = new ArrayList<>();
+        for (ProtectedRegion region : regions) {
+            if (!hasBypass(entity, world, region, flag)) {
+                checkForRegions.add(region);
+            }
+        }
+
+        if (checkForRegions.size() != 1) {
+            NormativeOrders.sort(checkForRegions);
+        }
+
+        ProtectedRegion global = WGEFUtils.getFork().getRegionContainer()
+                .get(world).getRegion(ProtectedRegion.GLOBAL_REGION);
+
+        if (global != null && hasBypass(entity, world, global, flag)) {
+            global = null;
+        }
+
         return new FlagValueCalculator(checkForRegions, global);
     }
 
