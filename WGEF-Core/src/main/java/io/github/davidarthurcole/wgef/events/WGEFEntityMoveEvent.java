@@ -1,7 +1,6 @@
 package io.github.davidarthurcole.wgef.events;
 
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
-import net.minecraft.world.entity.Entity;
 import org.bukkit.Location;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.Event;
@@ -20,6 +19,9 @@ public class WGEFEntityMoveEvent extends Event {
 
     public Set<ProtectedRegion> fromRegions;
     public Set<ProtectedRegion> toRegions;
+
+    public Set<ProtectedRegion> leftRegions;
+    public Set<ProtectedRegion> enteredRegions;
 
     public LivingEntity getEntity() {
         return entity;

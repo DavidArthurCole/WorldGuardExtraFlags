@@ -1,0 +1,5 @@
+rootProject.name = "WGEF-REBORN"
+
+include("WGEF-Abstraction")
+include("WGEF-Core")
+include("WG7")
