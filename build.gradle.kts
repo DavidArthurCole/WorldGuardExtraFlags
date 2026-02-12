@@ -36,9 +36,9 @@ subprojects {
 
     dependencies {
         // https://hub.spigotmc.org/nexus/#browse/browse:public
-        compileOnly("io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT")
+        compileOnly("io.papermc.paper:paper-api:1.21.8-R0.1-SNAPSHOT")
         // https://maven.enginehub.org/repo/com/sk89q/worldguard/worldguard-bukkit/
-        compileOnly("com.sk89q.worldguard:worldguard-bukkit:7.0.16-SNAPSHOT")
+        compileOnly("com.sk89q.worldguard:worldguard-bukkit:7.0.14")
         // https://maven.enginehub.org/repo/com/sk89q/worldedit/worldedit-core/
         compileOnly("com.sk89q.worldedit:worldedit-core:7.4.0")
         // https://maven.enginehub.org/repo/com/sk89q/worldedit/worldedit-bukkit/
@@ -46,7 +46,7 @@ subprojects {
             isTransitive = false
         }
         // https://mvnrepository.com/artifact/com.github.NEZNAMY/TAB-API/versions
-        compileOnly("com.github.NEZNAMY:TAB-API:5.4.0")
+        compileOnly("com.github.NEZNAMY:TAB-API:5.5.0")
     }
 
     configurations.configureEach {
@@ -54,6 +54,7 @@ subprojects {
             force("com.google.guava:guava:33.3.1-jre")
             force("com.google.code.gson:gson:2.11.0")
             force("org.apache.logging.log4j:log4j-bom:2.24.1")
+            force("it.unimi.dsi:fastutil:8.5.18")
         }
     }
 }

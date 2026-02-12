@@ -14,5 +14,5 @@ repositories {
 
 dependencies {
     compileOnly("net.essentialsx:EssentialsX:2.21.2")
-    compileOnly("com.github.NEZNAMY:TAB-API:5.4.0")
+    compileOnly("com.github.NEZNAMY:TAB-API:5.5.0")
 }

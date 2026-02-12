@@ -5,7 +5,7 @@ plugins {
     id("net.kyori.indra.git") version "3.1.3"
 }
 
-group = "io.github.invvk"
+group = "io.github.davidarthurcole"
 version = parent?.version ?: "1.0.0"
 
 repositories {
@@ -20,7 +20,7 @@ dependencies {
     // https://mvnrepository.com/artifact/net.essentialsx/EssentialsX
     compileOnly("net.essentialsx:EssentialsX:2.21.2")
     // https://repo.helpch.at/#/releases/me/clip/placeholderapi
-    compileOnly("me.clip:placeholderapi:2.11.7")
+    compileOnly("me.clip:placeholderapi:2.12.2")
 
     implementation(project(":WGEF-Abstraction"))
     implementation(project(":WG7"))
@@ -29,8 +29,7 @@ dependencies {
 
 tasks.shadowJar {
     archiveBaseName.set("WGEF-REBORN")
-    val mcVer = "1.21.11"
-    archiveVersion.set("${project.version}" + mcVer.takeIf { it.isNotEmpty() }?.let { "-$it" }.orEmpty())
+    archiveVersion.set("${project.version}-1.21.8")
     archiveClassifier.set("")
 
     destinationDirectory.set(file("C:\\Users\\david\\Desktop\\plugins"))
